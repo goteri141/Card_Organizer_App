@@ -1,10 +1,6 @@
 import '../database_helper.dart';
 import '../models/card.dart';
-import '../models/folder.dart';
-import 'package:flutter/material.dart';
-import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:path_provider/path_provider.dart';
 
 class CardRepository {
   final DatabaseHelper _dbHelper = DatabaseHelper.instance;
@@ -16,9 +12,9 @@ class CardRepository {
   }
 
   // READ - Get all cards
-  Future> getAllCards() async {
+  Future<List> getAllCards() async {
     final db = await _dbHelper.database;
-    final List> maps = await db.query('cards');
+    final List maps = await db.query('cards');
     
     return List.generate(maps.length, (i) {
       return PlayingCard.fromMap(maps[i]);
@@ -26,9 +22,9 @@ class CardRepository {
   }
 
   // READ - Get cards by folder ID
-  Future> getCardsByFolderId(int folderId) async {
+  Future<List> getCardsByFolderId(int folderId) async {
     final db = await _dbHelper.database;
-    final List> maps = await db.query(
+    final List maps = await db.query(
       'cards',
       where: 'folder_id = ?',
       whereArgs: [folderId],
@@ -43,7 +39,7 @@ class CardRepository {
   // READ - Get a single card by ID
   Future getCardById(int id) async {
     final db = await _dbHelper.database;
-    final List> maps = await db.query(
+    final List maps = await db.query(
       'cards',
       where: 'id = ?',
       whereArgs: [id],
