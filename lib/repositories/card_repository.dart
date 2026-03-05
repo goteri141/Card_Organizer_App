@@ -5,12 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart';
+import 'dart:async';
+
 
 class CardRepository {
   final DatabaseHelper _dbHelper = DatabaseHelper.instance;
 
   // CREATE - Insert a new card
-  Future insertCard(PlayingCard card) async {
+  Future<int> insertCard(PlayingCard card) async {
     final db = await _dbHelper.database;
     return await db.insert('cards', card.toMap());
   }
