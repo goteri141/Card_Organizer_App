@@ -79,7 +79,7 @@ class _FoldersScreenState extends State {
           crossAxisCount: 2,
           crossAxisSpacing: 16,
           mainAxisSpacing: 16,
-          childAspectRatio: 1.2,
+          childAspectRatio: 0.8,
         ),
         itemCount: _folders.length,
         itemBuilder: (context, index) {
