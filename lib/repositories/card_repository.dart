@@ -13,7 +13,7 @@ class CardRepository {
   }
 
   // READ - Get all cards
-  Future<List> getAllCards() async {
+  Future<List<PlayingCard>> getAllCards() async {
     final db = await _dbHelper.database;
     final List maps = await db.query('cards');
     
@@ -23,7 +23,7 @@ class CardRepository {
   }
 
   // READ - Get cards by folder ID
-  Future<List> getCardsByFolderId(int folderId) async {
+  Future<List<PlayingCard>> getCardsByFolderId(int folderId) async {
     final db = await _dbHelper.database;
     final List maps = await db.query(
       'cards',
